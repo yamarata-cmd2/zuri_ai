@@ -433,27 +433,50 @@ export default function AgenticPage() {
               </div>
             </div>
 
-            {/* Right side — live audit log visualization */}
-            <BentoCard className="p-6 lg:row-span-1" delay={0}>
-              <div className="text-xs text-black/30 tracking-widest uppercase mb-4">Live Audit Trail</div>
+            {/* Right side — live audit log visualization (dark terminal theme) */}
+            <div 
+              className="rounded-2xl border border-white/[0.08] p-6 lg:row-span-1 overflow-hidden"
+              style={{
+                background: "#0f0f0f",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">Live Audit Trail</div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[10px] text-emerald-400/70 font-mono">LIVE</span>
+                </div>
+              </div>
               <div className="space-y-2">
                 {[
                   { time: "12:34:21", action: "task_executed", status: "success" },
                   { time: "12:34:18", action: "alert_sent", status: "success" },
-                  { time: "12:34:15", action: "camera_flagged", status: "success" },
+                  { time: "12:34:15", action: "camera_flagged", status: "warning" },
                   { time: "12:34:12", action: "report_generated", status: "success" },
                   { time: "12:34:09", action: "revenue_tracked", status: "success" },
                 ].map((log, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-black/[0.02] hover:bg-black/[0.04] transition-colors border border-black/[0.04] group cursor-pointer"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/[0.02] hover:bg-white/[0.05] transition-colors border border-white/[0.04] group cursor-pointer"
                     style={{
                       animation: `fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 80}ms both`,
                     }}
                   >
-                    <span className="text-[10px] text-black/25 font-mono min-w-[60px]">{log.time}</span>
-                    <span className="text-[11px] text-black/50 font-light flex-1">{log.action}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500/60 group-hover:bg-green-500 transition-colors" />
+                    <span className="text-[10px] text-white/30 font-mono min-w-[60px]">{log.time}</span>
+                    <span className="text-[11px] text-white/55 font-light flex-1 font-mono">{log.action}</span>
+                    <span 
+                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                        log.status === "warning" 
+                          ? "bg-amber-500/70 group-hover:bg-amber-400" 
+                          : "bg-emerald-500/70 group-hover:bg-emerald-400"
+                      }`} 
+                      style={{
+                        boxShadow: log.status === "warning" 
+                          ? "0 0 6px rgba(251,191,36,0.4)" 
+                          : "0 0 6px rgba(52,211,153,0.4)"
+                      }}
+                    />
                   </div>
                 ))}
               </div>
@@ -463,7 +486,7 @@ export default function AgenticPage() {
                   to { opacity: 1; transform: translateY(0); }
                 }
               `}</style>
-            </BentoCard>
+            </div>
           </div>
         </div>
       </section>
@@ -499,22 +522,32 @@ export default function AgenticPage() {
         </div>
       </section>
 
-      {/* ── LIVE AGENTS ��──────────────────────────────────────────────────── */}
-      <section id="live" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      {/* ── LIVE AGENTS (Dark Section) ─────────────────────────────────── */}
+      <section 
+        id="live" 
+        className="py-32 px-6 md:px-12 lg:px-20 border-t border-white/[0.06]"
+        style={{
+          background: "linear-gradient(to bottom, #0a0a0a 0%, #111111 100%)",
+        }}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <PixelIcon type="agents" size={40} />
-              <div className="mt-4"><Tag>LIVE RIGHT NOW</Tag></div>
-              <RevealText className="mt-5 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05]">
-                {"Zuri AI working\n24/7 at Ayana's Villa."}
-              </RevealText>
-              <p className="mt-6 text-base text-black/40 leading-relaxed max-w-sm">
+              <PixelIcon type="agents" size={40} dark />
+              <div className="mt-4">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans text-white/45 bg-white/[0.06]">
+                  LIVE RIGHT NOW
+                </span>
+              </div>
+              <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white/90">
+                Zuri AI working<br />24/7 at Ayana&apos;s Villa.
+              </h2>
+              <p className="mt-6 text-base text-white/45 leading-relaxed max-w-sm">
                 1,247 tasks automated today, 0 security incidents, $3,842 revenue tracked, 89 guest messages handled.
               </p>
               <div className="mt-10 flex items-end gap-2">
-                <LiveAgentCounter />
-                <span className="text-black/30 text-sm mb-1 tracking-wide">tasks automated today</span>
+                <LiveAgentCounter dark />
+                <span className="text-white/35 text-sm mb-1 tracking-wide">tasks automated today</span>
               </div>
             </div>
             <div className="relative">
@@ -536,54 +569,62 @@ export default function AgenticPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto" onMouseMove={handleMouse}>
-            {[
-              {
-                name: "ZURI AI FULL SYSTEM",
-                price: "$400",
-                period: "/mo",
-                sub: "vs. Hiring an Operations Manager: $2,000+/month",
-                features: ["All six modules included", "Unlimited tasks", "Unlimited camera feeds", "Slack & WhatsApp integration", "Daily reports", "Dedicated setup support", "No contract, cancel anytime"],
-                highlight: true,
-                delay: 0,
-              },
-              {
-                name: "ENTERPRISE",
-                price: "Custom",
-                sub: "For hotel groups & chains",
-                features: ["Multiple properties", "Custom integrations", "Priority support", "SLA guarantees", "On-site training", "Dedicated account manager"],
-                delay: 80,
-              },
-            ].map((plan) => (
-              <BentoCard
-                key={plan.name}
-                className={`p-8 flex flex-col ${plan.highlight ? "border-black/20 bg-[#F0EEE8]" : ""}`}
-                delay={plan.delay}
-              >
-                <div className="mb-8">
-                  <div className="font-pixel text-[11px] tracking-widest text-black/40 mb-4">{plan.name}</div>
-                  <div className="flex items-baseline gap-1 mb-1">
-                    <span className="text-4xl font-light">{plan.price}</span>
-                    {plan.period && <span className="text-black/40 text-sm">{plan.period}</span>}
-                  </div>
-                  <p className="text-xs text-black/35 tracking-wide">{plan.sub}</p>
+            {/* Standard Plan */}
+            <BentoCard
+              className="p-8 flex flex-col border-black/20 bg-[#F0EEE8]"
+              delay={0}
+            >
+              <div className="mb-8">
+                <div className="font-pixel text-[11px] tracking-widest text-black/40 mb-4">ZURI AI FULL SYSTEM</div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-4xl font-light">$400</span>
+                  <span className="text-black/40 text-sm">/mo</span>
                 </div>
-                <ul className="space-y-3 flex-1 mb-8">
-                  {plan.features.map(f => (
-                    <li key={f} className="flex items-center gap-3 text-sm text-black/55">
-                      <div className="w-1 h-1 rounded-full bg-black/25 shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <button className={`w-full py-3 rounded-xl text-sm tracking-widest transition-all duration-200 ${
-                  plan.highlight
-                    ? "bg-[#111] text-white hover:bg-[#333]"
-                    : "border border-black/10 text-black/60 hover:border-black/25 hover:text-black hover:bg-black/[0.04]"
-                }`}>
-                  {plan.name === "Enterprise" ? "CONTACT SALES" : "GET STARTED"}
-                </button>
-              </BentoCard>
-            ))}
+                <p className="text-xs text-black/35 tracking-wide">vs. Hiring an Operations Manager: $2,000+/month</p>
+              </div>
+              <ul className="space-y-3 flex-1 mb-8">
+                {["All six modules included", "Unlimited tasks", "Unlimited camera feeds", "Slack & WhatsApp integration", "Daily reports", "Dedicated setup support", "No contract, cancel anytime"].map(f => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-black/55">
+                    <div className="w-1 h-1 rounded-full bg-black/25 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3 rounded-xl text-sm tracking-widest transition-all duration-200 bg-[#111] text-white hover:bg-[#333]">
+                GET STARTED
+              </button>
+            </BentoCard>
+
+            {/* Enterprise Plan — Dark Theme */}
+            <div 
+              className="rounded-2xl border border-white/[0.1] p-8 flex flex-col overflow-hidden"
+              style={{
+                background: "#0f0f0f",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="font-pixel text-[11px] tracking-widest text-white/45">ENTERPRISE</div>
+                  <span className="text-[9px] tracking-widest text-amber-400/80 bg-amber-400/10 px-2 py-1 rounded-full border border-amber-400/20">PREMIUM</span>
+                </div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-4xl font-light text-white/90">Custom</span>
+                </div>
+                <p className="text-xs text-white/40 tracking-wide">For hotel groups & chains</p>
+              </div>
+              <ul className="space-y-3 flex-1 mb-8">
+                {["Multiple properties", "Custom integrations", "Priority support", "SLA guarantees", "On-site training", "Dedicated account manager"].map(f => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-white/60">
+                    <div className="w-1 h-1 rounded-full bg-white/30 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3 rounded-xl text-sm tracking-widest transition-all duration-200 border border-white/15 text-white/80 hover:border-white/30 hover:text-white hover:bg-white/[0.05]">
+                CONTACT SALES
+              </button>
+            </div>
           </div>
         </div>
       </section>

@@ -73,34 +73,34 @@ const STEPS = [
 
 function CodeLine({ line }: { line: (typeof STEPS)[0]["code"][0] }) {
   if (line.type === "gap") return <div className="h-3" />
-  if (line.type === "comment") return <div className="text-[#9ca3af]">{line.text}</div>
-  if (line.type === "output") return <div className="text-[#6b7280]">{line.text}</div>
-  if (line.type === "success") return <div className="text-[#16a34a]">{line.text}</div>
-  if (line.type === "url") return <div className="text-[#2563eb] underline">{line.text}</div>
+  if (line.type === "comment") return <div className="text-[#6b7280]">{line.text}</div>
+  if (line.type === "output") return <div className="text-[#9ca3af]">{line.text}</div>
+  if (line.type === "success") return <div className="text-[#4ade80]">{line.text}</div>
+  if (line.type === "url") return <div className="text-[#60a5fa] underline">{line.text}</div>
   if (line.type === "command") return (
     <div>
-      <span className="text-[#16a34a]">$ </span>
-      <span className="text-[#111]">{line.text}</span>
+      <span className="text-[#4ade80]">$ </span>
+      <span className="text-[#e5e7eb]">{line.text}</span>
     </div>
   )
-  if (line.type === "plain") return <div className="text-[#111]">{line.text}</div>
+  if (line.type === "plain") return <div className="text-[#e5e7eb]">{line.text}</div>
   if (line.type === "prop") return (
     <div>
-      <span className="text-[#2563eb]">{line.key}</span>
-      <span className="text-[#111]">: </span>
-      <span className="text-[#16a34a]">{line.val}</span>
-      <span className="text-[#111]">,</span>
+      <span className="text-[#60a5fa]">{line.key}</span>
+      <span className="text-[#9ca3af]">: </span>
+      <span className="text-[#4ade80]">{line.val}</span>
+      <span className="text-[#9ca3af]">,</span>
     </div>
   )
   if (line.type === "keyword") return (
     <div>
-      <span className="text-[#7c3aed]">{line.text}</span>
-      <span className="text-[#111]">{line.after}</span>
-      <span className="text-[#7c3aed]">{line.keyword2}</span>
-      {line.keyword3 && <span className="text-[#7c3aed]">{line.keyword3}</span>}
-      {line.fn && <span className="text-[#b45309]">{line.fn}</span>}
-      {line.args && <span className="text-[#111]">{line.args}</span>}
-      {line.string && <span className="text-[#16a34a]">{line.string}</span>}
+      <span className="text-[#c084fc]">{line.text}</span>
+      <span className="text-[#e5e7eb]">{line.after}</span>
+      <span className="text-[#c084fc]">{line.keyword2}</span>
+      {line.keyword3 && <span className="text-[#c084fc]">{line.keyword3}</span>}
+      {line.fn && <span className="text-[#fbbf24]">{line.fn}</span>}
+      {line.args && <span className="text-[#e5e7eb]">{line.args}</span>}
+      {line.string && <span className="text-[#4ade80]">{line.string}</span>}
     </div>
   )
   return null
@@ -188,12 +188,12 @@ export function DevExSection() {
             ))}
           </div>
 
-          {/* Right — fixed-size code panel */}
+          {/* Right — fixed-size code panel (dark IDE theme) */}
           <div
-            className="lg:col-span-2 rounded-2xl border border-black/[0.06] p-8 flex flex-col"
+            className="lg:col-span-2 rounded-2xl border border-white/[0.08] p-8 flex flex-col"
             style={{
-              background: "rgba(255,255,255,0.7)",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+              background: "#0d1117",
+              boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
               minHeight: "360px",
             }}
           >
@@ -205,7 +205,7 @@ export function DevExSection() {
                   opacity: visible ? 1 : 0,
                   filter: visible ? "blur(0px)" : "blur(4px)",
                   transition: "opacity 200ms ease, filter 200ms ease",
-                  color: "rgba(0,0,0,0.3)",
+                  color: "rgba(255,255,255,0.35)",
                 }}
               >
                 {step.file}
@@ -216,7 +216,7 @@ export function DevExSection() {
                     key={d}
                     className="w-2 h-2 rounded-full transition-all duration-300"
                     style={{
-                      background: d === active % 3 ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.08)",
+                      background: d === active % 3 ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.12)",
                     }}
                   />
                 ))}
@@ -224,7 +224,7 @@ export function DevExSection() {
             </div>
 
             {/* Code block — fixed height, content doesn't affect layout */}
-            <div className="flex-1 rounded-xl p-6 overflow-hidden" style={{ background: "rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.06)" }}>
+            <div className="flex-1 rounded-xl p-6 overflow-hidden" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <div
                 className="font-mono text-[12px] leading-6"
                 style={{

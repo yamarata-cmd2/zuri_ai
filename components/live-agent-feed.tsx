@@ -75,11 +75,11 @@ function ProgressBar({ initial }: { initial: number }) {
   }, [])
 
   return (
-    <div style={{ width: "100%", height: 2, background: "rgba(0,0,0,0.08)", borderRadius: 9 }}>
+    <div style={{ width: "100%", height: 2, background: "rgba(255,255,255,0.1)", borderRadius: 9 }}>
       <div style={{
         height: "100%", borderRadius: 9,
         width: `${pct}%`,
-        background: "rgba(0,0,0,0.35)",
+        background: "rgba(255,255,255,0.4)",
         transition: "width 0.5s linear",
       }} />
     </div>
@@ -115,21 +115,22 @@ export function LiveAgentFeed() {
 
   return (
     <div style={{
-      border: "1px solid rgba(0,0,0,0.08)",
+      border: "1px solid rgba(255,255,255,0.08)",
       borderRadius: 16,
       overflow: "hidden",
-      background: "rgba(255,255,255,0.7)",
+      background: "#0f0f0f",
+      boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
     }}>
       {/* Table header */}
       <div style={{
         display: "grid",
         gridTemplateColumns: "80px 1fr 80px 70px",
         padding: "8px 16px",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
-        background: "rgba(0,0,0,0.03)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        background: "rgba(255,255,255,0.03)",
       }}>
         {["AGENT", "TASK", "REGION", "STATUS"].map(h => (
-          <span key={h} style={{ fontSize: 8, letterSpacing: "0.16em", color: "rgba(0,0,0,0.30)", fontFamily: "monospace" }}>{h}</span>
+          <span key={h} style={{ fontSize: 8, letterSpacing: "0.16em", color: "rgba(255,255,255,0.35)", fontFamily: "monospace" }}>{h}</span>
         ))}
       </div>
 
@@ -142,7 +143,7 @@ export function LiveAgentFeed() {
               display: "grid",
               gridTemplateColumns: "80px 1fr 80px 70px",
               padding: "10px 16px",
-              borderBottom: "1px solid rgba(0,0,0,0.04)",
+              borderBottom: "1px solid rgba(255,255,255,0.04)",
               gap: 8,
               alignItems: "center",
               animation: i === rows.length - 1 ? "rowSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) both" : "none",
@@ -150,32 +151,32 @@ export function LiveAgentFeed() {
           >
             {/* Agent */}
             <div>
-              <div style={{ fontSize: 9, fontFamily: "monospace", color: "rgba(0,0,0,0.65)", marginBottom: 1 }}>{row.name}</div>
-              <div style={{ fontSize: 7.5, fontFamily: "monospace", color: "rgba(0,0,0,0.25)" }}>#{row.id}</div>
+              <div style={{ fontSize: 9, fontFamily: "monospace", color: "rgba(255,255,255,0.75)", marginBottom: 1 }}>{row.name}</div>
+              <div style={{ fontSize: 7.5, fontFamily: "monospace", color: "rgba(255,255,255,0.30)" }}>#{row.id}</div>
             </div>
 
             {/* Task + progress */}
             <div style={{ minWidth: 0 }}>
               <div style={{
-                fontSize: 9, color: "rgba(0,0,0,0.50)", lineHeight: 1.35, marginBottom: 5,
+                fontSize: 9, color: "rgba(255,255,255,0.55)", lineHeight: 1.35, marginBottom: 5,
                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               }}>{row.task}</div>
               <ProgressBar initial={row.progress} />
             </div>
 
             {/* Region */}
-            <div style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(0,0,0,0.30)" }}>{row.region}</div>
+            <div style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(255,255,255,0.35)" }}>{row.region}</div>
 
             {/* Status */}
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
               <span style={{
                 width: 5, height: 5, borderRadius: "50%",
                 background: row.status.color,
-                boxShadow: row.status.label === "running" ? `0 0 6px ${row.status.color}` : "none",
+                boxShadow: row.status.label === "running" ? `0 0 8px ${row.status.color}` : "none",
                 animation: row.status.label === "running" ? "statusPulse 2s ease-in-out infinite" : "none",
                 flexShrink: 0,
               }} />
-              <span style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(0,0,0,0.35)" }}>{row.status.label}</span>
+              <span style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(255,255,255,0.40)" }}>{row.status.label}</span>
             </div>
           </div>
         ))}
@@ -195,7 +196,7 @@ export function LiveAgentFeed() {
   )
 }
 
-export function LiveAgentCounter() {
+export function LiveAgentCounter({ dark = false }: { dark?: boolean }) {
   const [count, setCount] = useState(3847)
   const [mounted, setMounted] = useState(false)
 
@@ -212,7 +213,7 @@ export function LiveAgentCounter() {
       fontFamily: "monospace",
       fontSize: "clamp(3rem, 6vw, 5rem)",
       fontWeight: 300,
-      color: "rgba(0,0,0,0.85)",
+      color: dark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)",
       lineHeight: 1,
       letterSpacing: "-0.02em",
       transition: "color 0.3s ease",
