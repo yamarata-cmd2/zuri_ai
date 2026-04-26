@@ -264,7 +264,7 @@ export default function AgenticPage() {
               </RevealText>
             </div>
             <p className="text-sm text-black/45 leading-relaxed max-w-xs">
-              {"Every feature is live, tested, and proven at Ayana's Villa in Zanzibar. No demos, no mockups — real results."}
+              {"Every feature is live, tested, and proven in real hotel environments. No demos, no mockups — real results."}
             </p>
           </div>
 
@@ -522,32 +522,37 @@ export default function AgenticPage() {
         </div>
       </section>
 
-      {/* ── LIVE AGENTS (Dark Section) ─────────────────────────────────── */}
+      {/* ── LIVE AGENTS ─────────────────────────────────────────────────── */}
       <section 
         id="live" 
-        className="py-32 px-6 md:px-12 lg:px-20 border-t border-white/[0.06]"
+        className="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden"
         style={{
-          background: "linear-gradient(to bottom, #0a0a0a 0%, #111111 100%)",
+          background: "linear-gradient(135deg, #1a1f2e 0%, #0f1319 50%, #111827 100%)",
         }}
       >
-        <div className="max-w-6xl mx-auto">
+        {/* Subtle gradient orbs for depth */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #4ade80 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #60a5fa 0%, transparent 70%)" }} />
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <PixelIcon type="agents" size={40} dark />
               <div className="mt-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans text-white/45 bg-white/[0.06]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans border border-emerald-500/20 bg-emerald-500/10 text-emerald-400/80">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   LIVE RIGHT NOW
                 </span>
               </div>
-              <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white/90">
-                Zuri AI working<br />24/7 at Ayana&apos;s Villa.
+              <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white/95">
+                Zuri AI working<br />24/7, always on.
               </h2>
-              <p className="mt-6 text-base text-white/45 leading-relaxed max-w-sm">
-                1,247 tasks automated today, 0 security incidents, $3,842 revenue tracked, 89 guest messages handled.
+              <p className="mt-6 text-base text-slate-400 leading-relaxed max-w-sm">
+                Real-time automation across your entire property. Tasks assigned, security monitored, revenue tracked — all without human intervention.
               </p>
               <div className="mt-10 flex items-end gap-2">
                 <LiveAgentCounter dark />
-                <span className="text-white/35 text-sm mb-1 tracking-wide">tasks automated today</span>
+                <span className="text-slate-500 text-sm mb-1 tracking-wide">tasks automated today</span>
               </div>
             </div>
             <div className="relative">
@@ -661,7 +666,7 @@ export default function AgenticPage() {
             Start building your<br />autonomous hotel operation.
           </h2>
           <p className="text-sm text-black/45 leading-relaxed mb-10">
-            {"Join Ayana's Villa and forward-thinking hotels in Zanzibar running on Zuri AI — 24/7, no human needed in the loop."}
+            {"Join forward-thinking hotels running on Zuri AI — 24/7, no human needed in the loop."}
           </p>
           {!submitted ? (
             <form

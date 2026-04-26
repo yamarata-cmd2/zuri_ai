@@ -75,12 +75,13 @@ function ProgressBar({ initial }: { initial: number }) {
   }, [])
 
   return (
-    <div style={{ width: "100%", height: 2, background: "rgba(255,255,255,0.1)", borderRadius: 9 }}>
+    <div style={{ width: "100%", height: 2, background: "rgba(100,116,139,0.3)", borderRadius: 9 }}>
       <div style={{
         height: "100%", borderRadius: 9,
         width: `${pct}%`,
-        background: "rgba(255,255,255,0.4)",
+        background: "linear-gradient(90deg, #4ade80 0%, #22d3ee 100%)",
         transition: "width 0.5s linear",
+        boxShadow: "0 0 6px rgba(74,222,128,0.4)",
       }} />
     </div>
   )
@@ -115,22 +116,23 @@ export function LiveAgentFeed() {
 
   return (
     <div style={{
-      border: "1px solid rgba(255,255,255,0.08)",
+      border: "1px solid rgba(255,255,255,0.1)",
       borderRadius: 16,
       overflow: "hidden",
-      background: "#0f0f0f",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+      background: "linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)",
+      boxShadow: "0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)",
+      backdropFilter: "blur(12px)",
     }}>
       {/* Table header */}
       <div style={{
         display: "grid",
         gridTemplateColumns: "80px 1fr 80px 70px",
         padding: "8px 16px",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        background: "rgba(255,255,255,0.03)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+        background: "rgba(255,255,255,0.02)",
       }}>
         {["AGENT", "TASK", "REGION", "STATUS"].map(h => (
-          <span key={h} style={{ fontSize: 8, letterSpacing: "0.16em", color: "rgba(255,255,255,0.35)", fontFamily: "monospace" }}>{h}</span>
+          <span key={h} style={{ fontSize: 8, letterSpacing: "0.16em", color: "rgba(148,163,184,0.6)", fontFamily: "monospace" }}>{h}</span>
         ))}
       </div>
 
@@ -143,40 +145,41 @@ export function LiveAgentFeed() {
               display: "grid",
               gridTemplateColumns: "80px 1fr 80px 70px",
               padding: "10px 16px",
-              borderBottom: "1px solid rgba(255,255,255,0.04)",
+              borderBottom: "1px solid rgba(255,255,255,0.05)",
               gap: 8,
               alignItems: "center",
               animation: i === rows.length - 1 ? "rowSlideIn 0.4s cubic-bezier(0.16,1,0.3,1) both" : "none",
+              background: i % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent",
             }}
           >
             {/* Agent */}
             <div>
-              <div style={{ fontSize: 9, fontFamily: "monospace", color: "rgba(255,255,255,0.75)", marginBottom: 1 }}>{row.name}</div>
-              <div style={{ fontSize: 7.5, fontFamily: "monospace", color: "rgba(255,255,255,0.30)" }}>#{row.id}</div>
+              <div style={{ fontSize: 9, fontFamily: "monospace", color: "#e2e8f0", marginBottom: 1 }}>{row.name}</div>
+              <div style={{ fontSize: 7.5, fontFamily: "monospace", color: "#64748b" }}>#{row.id}</div>
             </div>
 
             {/* Task + progress */}
             <div style={{ minWidth: 0 }}>
               <div style={{
-                fontSize: 9, color: "rgba(255,255,255,0.55)", lineHeight: 1.35, marginBottom: 5,
+                fontSize: 9, color: "#94a3b8", lineHeight: 1.35, marginBottom: 5,
                 overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
               }}>{row.task}</div>
               <ProgressBar initial={row.progress} />
             </div>
 
             {/* Region */}
-            <div style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(255,255,255,0.35)" }}>{row.region}</div>
+            <div style={{ fontSize: 8, fontFamily: "monospace", color: "#64748b" }}>{row.region}</div>
 
             {/* Status */}
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
               <span style={{
                 width: 5, height: 5, borderRadius: "50%",
                 background: row.status.color,
-                boxShadow: row.status.label === "running" ? `0 0 8px ${row.status.color}` : "none",
+                boxShadow: row.status.label === "running" ? `0 0 10px ${row.status.color}` : "none",
                 animation: row.status.label === "running" ? "statusPulse 2s ease-in-out infinite" : "none",
                 flexShrink: 0,
               }} />
-              <span style={{ fontSize: 8, fontFamily: "monospace", color: "rgba(255,255,255,0.40)" }}>{row.status.label}</span>
+              <span style={{ fontSize: 8, fontFamily: "monospace", color: "#94a3b8" }}>{row.status.label}</span>
             </div>
           </div>
         ))}
