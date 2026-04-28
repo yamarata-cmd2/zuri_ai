@@ -116,12 +116,11 @@ export function LiveAgentFeed() {
 
   return (
     <div style={{
-      border: "1px solid rgba(255,255,255,0.1)",
+      border: "1px solid rgba(255,255,255,0.06)",
       borderRadius: 16,
       overflow: "hidden",
-      background: "linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)",
-      backdropFilter: "blur(12px)",
+      background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
     }}>
       {/* Table header */}
       <div style={{
