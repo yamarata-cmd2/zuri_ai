@@ -8,7 +8,6 @@ import { LiveAgentFeed, LiveAgentCounter } from "@/components/live-agent-feed"
 import { RevealText } from "@/components/reveal-text"
 import { StackingAgentCards } from "@/components/stacking-agent-cards"
 import { MobileNav } from "@/components/mobile-nav"
-import { DevExSection } from "@/components/devex-section"
 
 // ─── Intersection Observer hook ──────────────────────────────────────────────
 function useInView(threshold = 0.15) {
@@ -187,93 +186,70 @@ export default function AgenticPage() {
             </RevealText>
           </div>
 
-          {/* Split layout: White cards left, Dark terminal right */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left: White feature cards */}
-            <div className="space-y-3" onMouseMove={handleMouse}>
-              <BentoCard className="p-8 min-h-[140px]" delay={0}>
-                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
-                </div>
-                <h3 className="text-lg font-light mb-2">Smart Task Engine</h3>
-                <p className="text-sm text-black/45 leading-relaxed">Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk.</p>
-              </BentoCard>
-
-              <BentoCard className="p-8 min-h-[140px]" delay={80}>
-                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
-                <p className="text-sm text-black/45 leading-relaxed">Detects theft, loitering, unauthorized access, and staff inactivity in real time.</p>
-              </BentoCard>
-
-              <BentoCard className="p-8 min-h-[140px]" delay={160}>
-                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
-                </div>
-                <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
-                <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Daily revenue reports without manual entry.</p>
-              </BentoCard>
-
-              <BentoCard className="p-8 min-h-[140px]" delay={240}>
-                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
-                <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels. Predicts shortages days ahead.</p>
-              </BentoCard>
-            </div>
-
-            {/* Right: Dark terminal showing live status */}
+          <div className="grid grid-cols-12 grid-rows-auto gap-3" onMouseMove={handleMouse}>
+            {/* Top row: Large card left, medium card right */}
             <div 
-              className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden flex flex-col"
+              className="col-span-12 md:col-span-8 p-8 min-h-[200px] rounded-2xl border border-white/[0.08] overflow-hidden relative"
               style={{
-                background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+                background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
               }}
             >
-              <div className="flex items-center justify-between mb-6">
-                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">SYSTEM/STATUS</div>
-                <div className="flex gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+              <div className="relative z-10">
+                <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-emerald-400"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+                </div>
+                <h3 className="text-xl font-light mb-3 text-white/95">Smart Task Engine</h3>
+                <p className="text-sm text-white/50 leading-relaxed max-w-md">
+                  Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk. Staff confirm via mobile. Delays flagged instantly on Slack.
+                </p>
+                <div className="mt-6 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs text-emerald-400/70 font-mono">active</span>
                 </div>
               </div>
-              
-              <div className="font-mono text-[13px] leading-relaxed flex-1 space-y-4">
-                <div>
-                  <span className="text-white/40"># </span>
-                  <span className="text-white/70">Active modules overview</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Task Engine</span>
-                    <span className="text-emerald-400 text-[11px]">active</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">CCTV Analysis</span>
-                    <span className="text-emerald-400 text-[11px]">active</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Revenue Tracking</span>
-                    <span className="text-emerald-400 text-[11px]">active</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Inventory Sync</span>
-                    <span className="text-emerald-400 text-[11px]">active</span>
-                  </div>
-                </div>
-                
-                <div className="pt-4 border-t border-white/[0.08]">
-                  <div className="text-emerald-400 mb-2">{">"} All systems operational</div>
-                  <div className="text-cyan-400/80 underline cursor-pointer">{">"} View live dashboard</div>
-                </div>
-                
-                <div className="pt-4 space-y-1.5 text-[12px]">
-                  <div className="text-white/30">Last sync: 2 seconds ago</div>
-                  <div className="text-white/30">Uptime: 99.98%</div>
-                </div>
+            </div>
+
+            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={80}>
+              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
+              <p className="text-sm text-black/45 leading-relaxed">Detects theft, loitering, unauthorized access, and staff inactivity in real time.</p>
+            </BentoCard>
+
+            {/* Bottom row */}
+            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={120}>
+              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+              </div>
+              <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
+              <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Gaps caught automatically. Daily revenue reports without manual entry.</p>
+            </BentoCard>
+
+            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={160}>
+              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
+              <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels across bar, kitchen, supplies. Predicts shortages days ahead.</p>
+            </BentoCard>
+
+            <div 
+              className="col-span-12 md:col-span-4 p-8 min-h-[200px] rounded-2xl border border-white/[0.08] overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-cyan-400"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+              </div>
+              <h3 className="text-lg font-light mb-2 text-white/95">Guest Messaging</h3>
+              <p className="text-sm text-white/50 leading-relaxed">AI responds to guest requests via WhatsApp in under 90 seconds. Multilingual support.</p>
+              <div className="mt-4 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-xs text-cyan-400/70 font-mono">listening</span>
               </div>
             </div>
           </div>
@@ -296,64 +272,7 @@ export default function AgenticPage() {
             </p>
           </div>
 
-          {/* Grid: Stacking cards left, Dark terminal right on desktop */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <div className="lg:col-span-3">
-              <StackingAgentCards />
-            </div>
-            
-            {/* Dark terminal showing live module activity */}
-            <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
-              <div 
-                className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden"
-                style={{
-                  background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
-                }}
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <div className="text-xs text-white/35 tracking-widest uppercase font-mono">MODULES/LIVE</div>
-                  <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  </div>
-                </div>
-                
-                <div className="font-mono text-[13px] leading-relaxed space-y-4">
-                  <div>
-                    <span className="text-white/40"># </span>
-                    <span className="text-white/70">Module performance today</span>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    {[
-                      { name: "staff-automation", tasks: "147", status: "running" },
-                      { name: "security-intel", tasks: "89", status: "running" },
-                      { name: "revenue-ctrl", tasks: "234", status: "running" },
-                      { name: "guest-experience", tasks: "56", status: "running" },
-                    ].map((mod) => (
-                      <div key={mod.name} className="flex items-center justify-between py-2 px-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
-                        <div>
-                          <div className="text-white/70 text-[12px]">{mod.name}</div>
-                          <div className="text-white/30 text-[10px]">{mod.tasks} tasks</div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(74,222,128,0.5)" }} />
-                          <span className="text-emerald-400/80 text-[10px]">{mod.status}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="pt-4 border-t border-white/[0.08] space-y-2">
-                    <div className="text-emerald-400 text-[12px]">{">"} All modules synchronized</div>
-                    <div className="text-white/30 text-[11px]">Total tasks today: 526</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <StackingAgentCards />
         </div>
       </section>
 
@@ -631,9 +550,6 @@ export default function AgenticPage() {
           </div>
         </div>
       </section>
-
-      {/* ── DEVELOPER EXPERIENCE ──────────────────────────────────────────── */}
-      <DevExSection />
 
       {/* ── PRICING ───────────────────────────────────────────────────────── */}
       <section id="pricing" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
