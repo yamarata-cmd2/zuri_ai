@@ -105,12 +105,12 @@ export function StackingAgentCards() {
               <div 
                 className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
                   agent.dark 
-                    ? "border border-white/[0.08]" 
-                    : "bg-[#faf9f7] border border-black/[0.07]"
+                    ? "border border-white/[0.06]" 
+                    : "bg-white border border-black/[0.06] shadow-sm"
                 }`}
                 style={agent.dark ? {
                   background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2)",
                 } : undefined}
               >
 
@@ -142,7 +142,7 @@ export function StackingAgentCards() {
                       style={{
                         background: agent.dark 
                           ? "linear-gradient(to right, #0f172a 0%, transparent 55%)"
-                          : "linear-gradient(to right, #faf9f7 0%, transparent 55%)",
+                          : "linear-gradient(to right, #ffffff 0%, transparent 55%)",
                       }}
                     />
                   </div>
@@ -159,12 +159,12 @@ export function StackingAgentCards() {
                       <Tag dark={agent.dark}>{agent.label}</Tag>
                       {agent.dark && (
                         <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span className="text-[10px] text-emerald-400/70 font-mono">active</span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(74,222,128,0.4)" }} />
+                          <span className="text-[10px] text-emerald-400/80 font-mono tracking-wide">active</span>
                         </div>
                       )}
                     </div>
-                    <h3 className={`text-xl font-light mb-3 ${agent.dark ? "text-white/95" : ""}`}>{agent.title}</h3>
+                    <h3 className={`text-xl font-medium mb-3 ${agent.dark ? "text-white/95" : "text-black/85"}`}>{agent.title}</h3>
                     <p className={`text-sm leading-relaxed mb-8 ${agent.dark ? "text-white/50" : "text-black/45"}`}>{agent.desc}</p>
                   </div>
                   <div className={`flex gap-8 pt-6 border-t ${agent.dark ? "border-white/[0.08]" : "border-black/[0.06]"}`}>

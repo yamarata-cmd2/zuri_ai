@@ -186,70 +186,72 @@ export default function AgenticPage() {
             </RevealText>
           </div>
 
-          <div className="grid grid-cols-12 grid-rows-auto gap-3" onMouseMove={handleMouse}>
-            {/* Top row: Large card left, medium card right */}
+          <div className="grid grid-cols-12 grid-rows-auto gap-4" onMouseMove={handleMouse}>
+            {/* Top row: Large dark card left, white card right */}
             <div 
-              className="col-span-12 md:col-span-8 p-8 min-h-[200px] rounded-2xl border border-white/[0.08] overflow-hidden relative"
+              className="col-span-12 md:col-span-8 p-8 min-h-[220px] rounded-2xl border border-white/[0.06] overflow-hidden relative"
               style={{
                 background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2)",
               }}
             >
               <div className="relative z-10">
                 <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-6">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-emerald-400"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
                 </div>
-                <h3 className="text-xl font-light mb-3 text-white/95">Smart Task Engine</h3>
+                <h3 className="text-xl font-medium mb-3 text-white/95">Smart Task Engine</h3>
                 <p className="text-sm text-white/50 leading-relaxed max-w-md">
                   Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk. Staff confirm via mobile. Delays flagged instantly on Slack.
                 </p>
                 <div className="mt-6 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs text-emerald-400/70 font-mono">active</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(74,222,128,0.4)" }} />
+                  <span className="text-xs text-emerald-400/80 font-mono tracking-wide">active</span>
                 </div>
               </div>
             </div>
 
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={80}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            {/* White card - top right */}
+            <div className="col-span-12 md:col-span-4 p-7 min-h-[220px] rounded-2xl bg-white border border-black/[0.06] shadow-sm">
+              <div className="w-10 h-10 rounded-xl border border-black/[0.06] bg-slate-50 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/50"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               </div>
-              <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
+              <h3 className="text-lg font-medium mb-2 text-black/85">AI Camera Surveillance</h3>
               <p className="text-sm text-black/45 leading-relaxed">Detects theft, loitering, unauthorized access, and staff inactivity in real time.</p>
-            </BentoCard>
+            </div>
 
-            {/* Bottom row */}
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={120}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+            {/* Bottom row - 3 cards */}
+            <div className="col-span-12 md:col-span-4 p-7 min-h-[200px] rounded-2xl bg-white border border-black/[0.06] shadow-sm">
+              <div className="w-10 h-10 rounded-xl border border-black/[0.06] bg-slate-50 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/50"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
               </div>
-              <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Gaps caught automatically. Daily revenue reports without manual entry.</p>
-            </BentoCard>
+              <h3 className="text-lg font-medium mb-2 text-black/85">Revenue & POS Control</h3>
+              <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Gaps caught automatically. Daily revenue reports.</p>
+            </div>
 
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={160}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div className="col-span-12 md:col-span-4 p-7 min-h-[200px] rounded-2xl bg-white border border-black/[0.06] shadow-sm">
+              <div className="w-10 h-10 rounded-xl border border-black/[0.06] bg-slate-50 flex items-center justify-center mb-5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-black/50"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
-              <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
+              <h3 className="text-lg font-medium mb-2 text-black/85">Inventory Intelligence</h3>
               <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels across bar, kitchen, supplies. Predicts shortages days ahead.</p>
-            </BentoCard>
+            </div>
 
+            {/* Dark card - bottom right */}
             <div 
-              className="col-span-12 md:col-span-4 p-8 min-h-[200px] rounded-2xl border border-white/[0.08] overflow-hidden"
+              className="col-span-12 md:col-span-4 p-7 min-h-[200px] rounded-2xl border border-white/[0.06] overflow-hidden"
               style={{
                 background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2)",
               }}
             >
               <div className="w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center mb-5">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-cyan-400"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
               </div>
-              <h3 className="text-lg font-light mb-2 text-white/95">Guest Messaging</h3>
+              <h3 className="text-lg font-medium mb-2 text-white/95">Guest Messaging</h3>
               <p className="text-sm text-white/50 leading-relaxed">AI responds to guest requests via WhatsApp in under 90 seconds. Multilingual support.</p>
               <div className="mt-4 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                <span className="text-xs text-cyan-400/70 font-mono">listening</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(34,211,238,0.4)" }} />
+                <span className="text-xs text-cyan-400/80 font-mono tracking-wide">listening</span>
               </div>
             </div>
           </div>
@@ -288,65 +290,71 @@ export default function AgenticPage() {
           </div>
 
           {/* Split layout: White step cards left, Dark reports terminal right */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left: White numbered step cards */}
-            <div className="space-y-3" onMouseMove={handleMouse}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left: White numbered step cards - matching reference image style */}
+            <div className="space-y-4">
               {[
-                { n: "01", title: "Connect", desc: "Plug into existing systems", delay: 0 },
-                { n: "02", title: "Configure", desc: "Set your rules & alerts", delay: 80 },
-                { n: "03", title: "Monitor", desc: "24/7 intelligent oversight", delay: 160 },
-                { n: "04", title: "Optimize", desc: "Get smarter every week", delay: 240 },
+                { n: "01", title: "Connect", desc: "Plug into existing systems", accent: false },
+                { n: "02", title: "Configure", desc: "Set your rules & alerts", accent: false },
+                { n: "03", title: "Monitor", desc: "24/7 intelligent oversight", accent: false },
+                { n: "04", title: "Optimize", desc: "Get smarter every week", accent: true },
               ].map((step) => (
-                <BentoCard key={step.n} className="p-6 flex items-center gap-6" delay={step.delay}>
-                  <div className="w-12 h-12 rounded-xl border border-black/[0.08] bg-white flex items-center justify-center shrink-0">
-                    <span className="font-mono text-sm text-black/30">{step.n}</span>
+                <div 
+                  key={step.n} 
+                  className={`p-5 rounded-2xl flex items-center gap-5 transition-all duration-300 ${
+                    step.accent 
+                      ? "bg-slate-50 border border-slate-200/80 shadow-sm" 
+                      : "bg-white border border-black/[0.06]"
+                  }`}
+                >
+                  <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                    step.accent 
+                      ? "border border-emerald-200 bg-emerald-50" 
+                      : "border border-black/[0.06] bg-white"
+                  }`}>
+                    <span className={`font-mono text-sm ${step.accent ? "text-emerald-600/70" : "text-black/25"}`}>{step.n}</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-light mb-1">{step.title}</h3>
-                    <p className="text-sm text-black/45">{step.desc}</p>
+                    <h3 className="text-base font-medium mb-0.5 text-black/85">{step.title}</h3>
+                    <p className="text-sm text-black/40">{step.desc}</p>
                   </div>
-                </BentoCard>
+                </div>
               ))}
             </div>
 
             {/* Right: Dark terminal showing daily report */}
             <div 
-              className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden"
+              className="rounded-2xl border border-white/[0.06] p-6 overflow-hidden self-start"
               style={{
-                background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+                background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2)",
               }}
             >
               <div className="flex items-center justify-between mb-6">
-                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">REPORTS/DAILY</div>
+                <div className="text-xs text-white/40 tracking-widest uppercase font-mono">REPORTS/DAILY</div>
                 <div className="flex gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
                 </div>
               </div>
               
-              <div className="font-mono text-[13px] leading-relaxed space-y-4">
+              <div className="font-mono text-[13px] leading-relaxed space-y-5">
                 <div>
-                  <span className="text-white/40"># </span>
-                  <span className="text-white/70">Daily intelligence report</span>
+                  <span className="text-white/30"># </span>
+                  <span className="text-white/60">Daily intelligence report</span>
                 </div>
                 
-                <div className="space-y-2 text-white/60">
-                  <div>Tasks completed: <span className="text-white/80">147</span></div>
-                  <div>Security alerts: <span className="text-white/80">3 (all resolved)</span></div>
-                  <div>Revenue tracked: <span className="text-white/80">$3,842</span></div>
-                  <div>Stock alerts: <span className="text-white/80">2 items low</span></div>
+                <div className="space-y-2.5 text-white/55">
+                  <div>Tasks completed: <span className="text-white/75">147</span></div>
+                  <div>Security alerts: <span className="text-white/75">3 (all resolved)</span></div>
+                  <div>Revenue tracked: <span className="text-white/75">$3,842</span></div>
+                  <div>Stock alerts: <span className="text-white/75">2 items low</span></div>
                 </div>
                 
-                <div className="pt-4 border-t border-white/[0.08] space-y-2">
-                  <div className="text-emerald-400">{">"} Pattern detected: Tuesday understaffed</div>
-                  <div className="text-cyan-400/80 underline cursor-pointer">{">"} Recommendation: Add 1 housekeeper</div>
-                </div>
-                
-                <div className="pt-4 space-y-1.5 text-[12px] text-white/30">
-                  <div>Report generated: 06:00 AM</div>
-                  <div>Next report: 06:00 AM tomorrow</div>
+                <div className="pt-5 border-t border-white/[0.06] space-y-2.5">
+                  <div className="text-emerald-400/90">{">"} Pattern detected: Tuesday understaffed</div>
+                  <div className="text-cyan-400/70 underline underline-offset-2 cursor-pointer">{">"} Recommendation: Add 1 housekeeper</div>
                 </div>
               </div>
             </div>
@@ -460,33 +468,32 @@ export default function AgenticPage() {
 
           {/* Asymmetric grid: left text + title, right interactive audit log */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Left side — descriptions */}
-            <div className="space-y-6">
-              <p className="text-sm text-black/45 leading-relaxed">
-                Every task, every alert, every transaction logged with timestamp and staff ID. Complete traceability.
-              </p>
-
-              <div className="space-y-4">
-                {[
-                  { label: "Full Audit Trail", desc: "Every task, every alert, every transaction logged with timestamp and staff ID. Complete traceability." },
-                  { label: "Real-time Observability", desc: "Monitor your entire property from a single dashboard. Live camera feeds, task status, revenue flow." },
-                  { label: "Privacy Protected", desc: "Guest data encrypted. Staff monitoring restricted to operational areas only. GDPR-compliant." },
-                ].map((item) => (
-                  <div key={item.label} className="flex gap-4">
-                    <div className="w-1 bg-black/10 rounded-full shrink-0" />
+            {/* Left side — descriptions in white card style */}
+            <div className="space-y-4">
+              {[
+                { label: "Full Audit Trail", desc: "Every task, alert, and transaction logged with timestamp and staff ID. Complete traceability." },
+                { label: "Real-time Observability", desc: "Monitor your entire property from a single dashboard. Live camera feeds, task status, revenue flow." },
+                { label: "Privacy Protected", desc: "Guest data encrypted. Staff monitoring restricted to operational areas only. GDPR-compliant." },
+              ].map((item, i) => (
+                <div 
+                  key={item.label} 
+                  className="p-5 rounded-2xl bg-white border border-black/[0.06] shadow-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className={`w-1 h-12 rounded-full shrink-0 ${i === 0 ? "bg-emerald-400" : "bg-black/10"}`} />
                     <div>
-                      <h3 className="text-sm font-light mb-1">{item.label}</h3>
-                      <p className="text-xs text-black/35">{item.desc}</p>
+                      <h3 className="text-base font-medium mb-1.5 text-black/85">{item.label}</h3>
+                      <p className="text-sm text-black/45 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
 
-              {/* Compliance badges — vertical stack */}
-              <div className="pt-4 flex flex-col gap-2">
+              {/* Compliance badges */}
+              <div className="pt-2 flex flex-wrap gap-2">
                 {["GDPR Compliant", "End-to-end Encryption", "Audit Logs", "Staff Privacy"].map((badge) => (
-                  <div key={badge} className="flex items-center gap-2 text-xs text-black/25">
-                    <span className="w-1 h-1 rounded-full bg-black/25" />
+                  <div key={badge} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-black/[0.04] text-xs text-black/40">
+                    <span className="w-1 h-1 rounded-full bg-emerald-400" />
                     {badge}
                   </div>
                 ))}
@@ -495,17 +502,17 @@ export default function AgenticPage() {
 
             {/* Right side — live audit log visualization (dark terminal theme) */}
             <div 
-              className="rounded-2xl border border-white/[0.08] p-6 lg:row-span-1 overflow-hidden"
+              className="rounded-2xl border border-white/[0.06] p-6 lg:row-span-1 overflow-hidden"
               style={{
-                background: "#0f0f0f",
-                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+                background: "linear-gradient(145deg, #1e293b 0%, #0f172a 100%)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2)",
               }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">Live Audit Trail</div>
+              <div className="flex items-center justify-between mb-5">
+                <div className="text-xs text-white/40 tracking-widest uppercase font-mono">AUDIT/LIVE</div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[10px] text-emerald-400/70 font-mono">LIVE</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(74,222,128,0.5)" }} />
+                  <span className="text-[10px] text-emerald-400/80 font-mono tracking-wide">LIVE</span>
                 </div>
               </div>
               <div className="space-y-2">
