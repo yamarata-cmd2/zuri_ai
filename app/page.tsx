@@ -187,67 +187,95 @@ export default function AgenticPage() {
             </RevealText>
           </div>
 
-          <div className="grid grid-cols-12 grid-rows-auto gap-3" onMouseMove={handleMouse}>
-            {/* Big left card — full width now that multi-agent is removed */}
-            <BentoCard className="col-span-12 p-8 min-h-[200px] flex flex-col justify-between relative overflow-hidden" delay={0}>
-              {/* Arc background image — always fills container, objects pushed to bottom third */}
-              <img
-                src="/images/arc.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: "center 70%" }}
-              />
-              {/* Progressive blur layer — blurs from 45% downward */}
-              <div className="absolute inset-0" style={{
-                maskImage: "linear-gradient(to bottom, transparent 45%, black 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 45%, black 100%)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-              }} />
-              {/* Fade-to-background gradient — matches site bg color #f5f4f0 */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(to bottom, transparent 35%, rgba(245,244,240,0.3) 50%, rgba(245,244,240,0.75) 65%, rgba(245,244,240,0.95) 80%, rgb(245,244,240) 100%)",
-                }}
-              />
-              {/* Content */}
-              <div className="relative z-10">
-                <div className="w-10 h-10 rounded-xl border border-black/10 bg-white/60 flex items-center justify-center mb-6" style={{ backdropFilter: "blur(8px)" }}>
+          {/* Split layout: White cards left, Dark terminal right */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left: White feature cards */}
+            <div className="space-y-3" onMouseMove={handleMouse}>
+              <BentoCard className="p-8 min-h-[140px]" delay={0}>
+                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
                 </div>
-                <h3 className="text-xl font-light mb-3">Smart Task Engine</h3>
-                <p className="text-sm text-black/45 leading-relaxed max-w-sm">
-                  Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk. Staff confirm via mobile. Delays flagged instantly on Slack.
-                </p>
-              </div>
-            </BentoCard>
+                <h3 className="text-lg font-light mb-2">Smart Task Engine</h3>
+                <p className="text-sm text-black/45 leading-relaxed">Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk.</p>
+              </BentoCard>
 
-            {/* Bottom row */}
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={120}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              </div>
-              <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Your existing cameras become intelligent. Detects theft, loitering, unauthorized access, and front desk inactivity — alerts in real time.</p>
-            </BentoCard>
+              <BentoCard className="p-8 min-h-[140px]" delay={80}>
+                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
+                <p className="text-sm text-black/45 leading-relaxed">Detects theft, loitering, unauthorized access, and staff inactivity in real time.</p>
+              </BentoCard>
 
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={160}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
-              </div>
-              <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Gaps between orders and payments caught automatically. Daily revenue reports without manual entry.</p>
-            </BentoCard>
+              <BentoCard className="p-8 min-h-[140px]" delay={160}>
+                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+                </div>
+                <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
+                <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Daily revenue reports without manual entry.</p>
+              </BentoCard>
 
-            <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={200}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <BentoCard className="p-8 min-h-[140px]" delay={240}>
+                <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
+                <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels. Predicts shortages days ahead.</p>
+              </BentoCard>
+            </div>
+
+            {/* Right: Dark terminal showing live status */}
+            <div 
+              className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden flex flex-col"
+              style={{
+                background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">SYSTEM/STATUS</div>
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                </div>
               </div>
-              <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels across bar, kitchen, and supplies. Predicts shortages days ahead. Flags stock-vs-sales discrepancies.</p>
-            </BentoCard>
+              
+              <div className="font-mono text-[13px] leading-relaxed flex-1 space-y-4">
+                <div>
+                  <span className="text-white/40"># </span>
+                  <span className="text-white/70">Active modules overview</span>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Task Engine</span>
+                    <span className="text-emerald-400 text-[11px]">active</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">CCTV Analysis</span>
+                    <span className="text-emerald-400 text-[11px]">active</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Revenue Tracking</span>
+                    <span className="text-emerald-400 text-[11px]">active</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Inventory Sync</span>
+                    <span className="text-emerald-400 text-[11px]">active</span>
+                  </div>
+                </div>
+                
+                <div className="pt-4 border-t border-white/[0.08]">
+                  <div className="text-emerald-400 mb-2">{">"} All systems operational</div>
+                  <div className="text-cyan-400/80 underline cursor-pointer">{">"} View live dashboard</div>
+                </div>
+                
+                <div className="pt-4 space-y-1.5 text-[12px]">
+                  <div className="text-white/30">Last sync: 2 seconds ago</div>
+                  <div className="text-white/30">Uptime: 99.98%</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -268,7 +296,64 @@ export default function AgenticPage() {
             </p>
           </div>
 
-          <StackingAgentCards />
+          {/* Grid: Stacking cards left, Dark terminal right on desktop */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <div className="lg:col-span-3">
+              <StackingAgentCards />
+            </div>
+            
+            {/* Dark terminal showing live module activity */}
+            <div className="lg:col-span-2 lg:sticky lg:top-24 lg:self-start">
+              <div 
+                className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden"
+                style={{
+                  background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+                }}
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div className="text-xs text-white/35 tracking-widest uppercase font-mono">MODULES/LIVE</div>
+                  <div className="flex gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  </div>
+                </div>
+                
+                <div className="font-mono text-[13px] leading-relaxed space-y-4">
+                  <div>
+                    <span className="text-white/40"># </span>
+                    <span className="text-white/70">Module performance today</span>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    {[
+                      { name: "staff-automation", tasks: "147", status: "running" },
+                      { name: "security-intel", tasks: "89", status: "running" },
+                      { name: "revenue-ctrl", tasks: "234", status: "running" },
+                      { name: "guest-experience", tasks: "56", status: "running" },
+                    ].map((mod) => (
+                      <div key={mod.name} className="flex items-center justify-between py-2 px-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
+                        <div>
+                          <div className="text-white/70 text-[12px]">{mod.name}</div>
+                          <div className="text-white/30 text-[10px]">{mod.tasks} tasks</div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(74,222,128,0.5)" }} />
+                          <span className="text-emerald-400/80 text-[10px]">{mod.status}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="pt-4 border-t border-white/[0.08] space-y-2">
+                    <div className="text-emerald-400 text-[12px]">{">"} All modules synchronized</div>
+                    <div className="text-white/30 text-[11px]">Total tasks today: 526</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -283,104 +368,160 @@ export default function AgenticPage() {
             </RevealText>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3" onMouseMove={handleMouse}>
-            {[
-              { n: "01", title: "Connect",   desc: "Plug Zuri into your existing cameras, POS, and Slack. No new hardware. Setup in under 48 hours.", delay: 0,   img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/define-5aafAmGBrxZpOqJ3XLHY3n3qzC2I5K.png" },
-              { n: "02", title: "Configure", desc: "Set your rules: who does what, which areas are restricted, what triggers an alert. Fully customizable per property.", delay: 80,  img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/compose-5RT5VR4f1Y3GoFmovqTKLTG4UXp3g2.png" },
-              { n: "03", title: "Monitor",   desc: "Zuri watches everything 24/7. Tasks, cameras, transactions, stock — all in one dashboard. Nothing escapes.", delay: 140, img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/test-zm8guZwxJHtwWsJ7XO4B0CF7GzlNK8.png" },
-              { n: "04", title: "Optimize",  desc: "Daily reports show patterns. Prevent problems before they happen. Your operation gets smarter every week.", delay: 200, img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/deploy-an8fgHSLzniojkcmRyGGIFQUJF9T5J.png" },
-            ].map((step) => (
-              <BentoCard key={step.n} className="relative overflow-hidden flex flex-col min-h-[320px]" delay={step.delay}>
-                {/* Image at top — mask fades it out strongly before the bottom edge */}
-                <div className="absolute inset-x-0 top-0 h-56 pointer-events-none">
-                  <img
-                    src={step.img}
-                    alt={step.title}
-                    className="w-full h-full object-cover object-top"
-                    style={{
-                      maskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 80%)",
-                      WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 30%, transparent 80%)",
-                    }}
-                  />
+          {/* Split layout: White step cards left, Dark reports terminal right */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left: White numbered step cards */}
+            <div className="space-y-3" onMouseMove={handleMouse}>
+              {[
+                { n: "01", title: "Connect", desc: "Plug into existing systems", delay: 0 },
+                { n: "02", title: "Configure", desc: "Set your rules & alerts", delay: 80 },
+                { n: "03", title: "Monitor", desc: "24/7 intelligent oversight", delay: 160 },
+                { n: "04", title: "Optimize", desc: "Get smarter every week", delay: 240 },
+              ].map((step) => (
+                <BentoCard key={step.n} className="p-6 flex items-center gap-6" delay={step.delay}>
+                  <div className="w-12 h-12 rounded-xl border border-black/[0.08] bg-white flex items-center justify-center shrink-0">
+                    <span className="font-mono text-sm text-black/30">{step.n}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-light mb-1">{step.title}</h3>
+                    <p className="text-sm text-black/45">{step.desc}</p>
+                  </div>
+                </BentoCard>
+              ))}
+            </div>
+
+            {/* Right: Dark terminal showing daily report */}
+            <div 
+              className="rounded-2xl border border-white/[0.08] p-6 overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="text-xs text-white/35 tracking-widest uppercase font-mono">REPORTS/DAILY</div>
+                <div className="flex gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
                 </div>
-                {/* Number top-left */}
-                <div className="relative z-10 p-7">
-                  <span className="font-pixel text-[11px] text-black/20 tracking-widest block">{step.n}</span>
+              </div>
+              
+              <div className="font-mono text-[13px] leading-relaxed space-y-4">
+                <div>
+                  <span className="text-white/40"># </span>
+                  <span className="text-white/70">Daily intelligence report</span>
                 </div>
-                {/* Text pushed further down */}
-                <div className="relative z-10 px-7 pb-7 mt-auto pt-16">
-                  <h3 className="text-2xl font-light mb-3">{step.title}</h3>
-                  <p className="text-sm text-black/45 leading-relaxed">{step.desc}</p>
+                
+                <div className="space-y-2 text-white/60">
+                  <div>Tasks completed: <span className="text-white/80">147</span></div>
+                  <div>Security alerts: <span className="text-white/80">3 (all resolved)</span></div>
+                  <div>Revenue tracked: <span className="text-white/80">$3,842</span></div>
+                  <div>Stock alerts: <span className="text-white/80">2 items low</span></div>
                 </div>
-              </BentoCard>
-            ))}
+                
+                <div className="pt-4 border-t border-white/[0.08] space-y-2">
+                  <div className="text-emerald-400">{">"} Pattern detected: Tuesday understaffed</div>
+                  <div className="text-cyan-400/80 underline cursor-pointer">{">"} Recommendation: Add 1 housekeeper</div>
+                </div>
+                
+                <div className="pt-4 space-y-1.5 text-[12px] text-white/30">
+                  <div>Report generated: 06:00 AM</div>
+                  <div>Next report: 06:00 AM tomorrow</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── INTEGRATIONS ──────────────────────────────────────────────────── */}
-      <section id="integrations" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
-            <div>
-              <PixelIcon type="integrations" size={40} />
-              <div className="mt-4"><Tag>INTEGRATIONS</Tag></div>
-              <RevealText className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
-                {"Connects to what\nyou already use."}
-              </RevealText>
+      <section id="integrations" className="border-t border-black/[0.06]">
+        {/* Top: White section with scrolling integration tags */}
+        <div className="py-16 px-6 md:px-12 lg:px-20 bg-white">
+          <div className="max-w-6xl mx-auto mb-8">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+              <div>
+                <PixelIcon type="integrations" size={40} />
+                <div className="mt-4"><Tag>INTEGRATIONS</Tag></div>
+                <RevealText className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
+                  {"Connects to what\nyou already use."}
+                </RevealText>
+              </div>
+              <p className="text-sm text-black/45 leading-relaxed max-w-xs">
+                Slack for alerts. WhatsApp for guest communication. Your existing cameras. Your POS system.
+              </p>
             </div>
-            <p className="text-sm text-black/45 leading-relaxed max-w-xs">
-              Slack for alerts. WhatsApp for guest communication. Your existing cameras. Your POS system. Zuri plugs in — no rip-and-replace.
-            </p>
           </div>
-
-          {/* Full-width image block with glass cards */}
-          {/* Mobile: flex-col, image + cards stacked. Desktop: image fills block, cards absolute */}
-          <div className="rounded-2xl overflow-hidden border border-black/[0.07] flex flex-col md:block md:relative" onMouseMove={handleMouse}>
-            {/* Image */}
-            <div className="relative w-full h-[280px] md:h-[480px] shrink-0">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Org%20Arc%20-%20Upscaled-Sk90jShfu7nltLnhoQbaMJC1YaQKuU.png"
-                alt="Agent orchestration architecture"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-              />
-            </div>
-
-            {/* Cards — flex row on mobile (equal spacing), absolute on desktop */}
-            <div className="flex flex-col gap-3 p-4 md:absolute md:bottom-4 md:right-4 md:p-0 md:w-72">
-              <div
-                className="rounded-xl border border-white/50 p-6"
-                style={{
-                  backdropFilter: "blur(24px)",
-                  WebkitBackdropFilter: "blur(24px)",
-                  background: "rgba(255,255,255,0.60)",
-                }}
-              >
-                <Tag>SLACK INTEGRATION</Tag>
-                <h3 className="mt-3 text-lg font-light mb-2">Real-time alerts</h3>
-                <p className="text-xs text-black/45 leading-relaxed mb-4">Instant notifications for tasks, security, and operations — directly in Slack.</p>
-                <div className="bg-black/[0.05] rounded-lg border border-black/[0.07] p-3 font-mono text-[11px] text-black/50 leading-relaxed">
-                  <span className="text-black/25">/zuri alert</span><br />
-                  <span className="text-amber-700/70">Task overdue:</span> Room 204 cleaning<br />
-                  <span className="text-amber-700/70">Assigned to:</span> Maria<br />
-                  <span className="text-amber-700/70">Status:</span> No confirmation received<br />
-                  <span className="text-blue-600/70">→ Escalating to manager</span>
+          
+          {/* Scrolling integration marquee */}
+          <div className="overflow-hidden select-none -mx-6 md:-mx-12 lg:-mx-20">
+            <div className="flex border-y border-black/[0.06]" style={{ animation: "marqueeLeft 28s linear infinite" }}>
+              {[...Array(3)].map((_, rep) => (
+                <div key={rep} className="flex shrink-0">
+                  {["Task Automation", "CCTV Analysis", "Revenue Tracking", "Inventory Control", "Guest Messaging", "Staff Management"].map((cap) => (
+                    <div key={cap} className="flex items-center gap-4 px-8 py-4 border-r border-black/[0.06] shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                      <span className="text-sm text-black/60 whitespace-nowrap tracking-wide">{cap}</span>
+                    </div>
+                  ))}
                 </div>
+              ))}
+            </div>
+            <div className="flex" style={{ animation: "marqueeRight 22s linear infinite" }}>
+              {[...Array(3)].map((_, rep) => (
+                <div key={rep} className="flex shrink-0">
+                  {["Maintenance", "Front Desk", "Pool Bar", "Kitchen Stock", "Theft Detection", "Access Control", "WhatsApp"].map((cap) => (
+                    <div key={cap} className="flex items-center gap-4 px-8 py-4 border-r border-black/[0.06] shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-black/20 shrink-0" />
+                      <span className="text-sm text-black/40 whitespace-nowrap tracking-wide">{cap}</span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom: Dark section with Live Agent feed */}
+        <div 
+          className="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #1a1f2e 0%, #0f1319 50%, #111827 100%)",
+          }}
+        >
+          {/* Subtle gradient orbs for depth */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #4ade80 0%, transparent 70%)" }} />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #60a5fa 0%, transparent 70%)" }} />
+          
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              {/* Left: Text content */}
+              <div>
+                <div className="w-10 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-6">
+                  <div className="grid grid-cols-3 gap-0.5">
+                    {[...Array(9)].map((_, i) => (
+                      <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                    ))}
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans border border-emerald-500/20 bg-emerald-500/10 text-emerald-400/80">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    LIVE RIGHT NOW
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white/95 mb-6">
+                  Zuri AI working<br />24/7, always on.
+                </h2>
+                <p className="text-base text-slate-400 leading-relaxed max-w-sm">
+                  Real-time automation across your entire property. Tasks assigned, security monitored, revenue tracked — all without human intervention.
+                </p>
               </div>
 
-              <div
-                className="rounded-xl border border-white/50 p-6"
-                style={{
-                  backdropFilter: "blur(24px)",
-                  WebkitBackdropFilter: "blur(24px)",
-                  background: "rgba(255,255,255,0.60)",
-                }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse" />
-                  <span className="text-xs text-black/40 tracking-widest">LIVE DASHBOARD</span>
-                </div>
-                <p className="text-sm text-black/45">Real-time hotel operations view. Every room, every staff member, every transaction — visible on any device.</p>
+              {/* Right: Live Agent Feed table */}
+              <div>
+                <LiveAgentFeed />
               </div>
             </div>
           </div>
@@ -494,75 +635,7 @@ export default function AgenticPage() {
       {/* ── DEVELOPER EXPERIENCE ──────────────────────────────────────────── */}
       <DevExSection />
 
-      {/* ── MARQUEE CAPABILITIES ──────────────────────────────────────────── */}
-      <section className="py-0 border-t border-black/[0.06] overflow-hidden select-none">
-        <div className="flex border-b border-black/[0.06]" style={{ animation: "marqueeLeft 28s linear infinite" }}>
-          {[...Array(3)].map((_, rep) => (
-            <div key={rep} className="flex shrink-0">
-              {["Task Automation", "CCTV Analysis", "Revenue Tracking", "Inventory Control", "Guest Messaging", "Staff Management", "Security Alerts", "POS Integration", "Daily Reports", "Shift Handovers"].map((cap) => (
-                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-black/[0.06] shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/20 shrink-0" />
-                  <span className="text-sm text-black/45 whitespace-nowrap tracking-wide">{cap}</span>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="flex" style={{ animation: "marqueeRight 22s linear infinite" }}>
-          {[...Array(3)].map((_, rep) => (
-            <div key={rep} className="flex shrink-0">
-              {["Housekeeping", "Maintenance", "Front Desk", "Pool Bar", "Kitchen Stock", "Theft Detection", "Access Control", "WhatsApp Chat", "Review Requests", "Guest History"].map((cap) => (
-                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-black/[0.06] shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/12 shrink-0" />
-                  <span className="text-sm text-black/30 whitespace-nowrap tracking-wide">{cap}</span>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── LIVE AGENTS ─────────────────────────────────────────────────── */}
-      <section 
-        id="live" 
-        className="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, #1a1f2e 0%, #0f1319 50%, #111827 100%)",
-        }}
-      >
-        {/* Subtle gradient orbs for depth */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #4ade80 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-15 blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, #60a5fa 0%, transparent 70%)" }} />
-        
-        <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <PixelIcon type="agents" size={40} dark />
-              <div className="mt-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans border border-emerald-500/20 bg-emerald-500/10 text-emerald-400/80">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  LIVE RIGHT NOW
-                </span>
-              </div>
-              <h2 className="mt-5 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white/95">
-                Zuri AI working<br />24/7, always on.
-              </h2>
-              <p className="mt-6 text-base text-slate-400 leading-relaxed max-w-sm">
-                Real-time automation across your entire property. Tasks assigned, security monitored, revenue tracked — all without human intervention.
-              </p>
-              <div className="mt-10 flex items-end gap-2">
-                <LiveAgentCounter dark />
-                <span className="text-slate-500 text-sm mb-1 tracking-wide">tasks automated today</span>
-              </div>
-            </div>
-            <div className="relative">
-              <LiveAgentFeed />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PRICING ───────────────────────────────────���────������─────────────── */}
+      {/* ── PRICING ───────────────────────────────────────────────────────── */}
       <section id="pricing" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 flex flex-col items-center">
@@ -709,7 +782,7 @@ export default function AgenticPage() {
               { label: "Platform",     href: "#platform" },
               { label: "Features",     href: "#agents" },
               { label: "How It Works", href: "#workflow" },
-              { label: "Live",         href: "#live" },
+              { label: "Integrations", href: "#integrations" },
               { label: "Pricing",      href: "#pricing" },
             ].map(l => (
               <a key={l.label} href={l.href} className="text-xs text-black/35 hover:text-black/70 transition-colors tracking-widest">{l.label}</a>
